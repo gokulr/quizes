@@ -1,0 +1,38 @@
+Question:Assuming we have a tree like this
+
+A
+|_B
+| |_H
+|
+|_C
+| |_E
+| |_F
+|   |
+|   |_G
+|_ D
+   |_I
+
+We can represent that node and parent relationship as follow
+q)t:([]n:`A`B`C`D`E`F`G`H`I;p:`A`A`A`A`C`C`F`B`D)
+q)t
+n p
+---
+A A
+B A
+C A
+D A
+E C
+F C
+G F
+H B
+I D
+
+How do I find a path for example given a node `G
+
+The path is `A`C`F`G   ?
+
+Solutions:
+Henry: findParent:{parent:first exec p from t where n=x;$[parent=x;show x;[findParent[parent];show x]]}
+Gokul: g:{reverse {first (1!t)[x]}\[x]}
+
+
