@@ -34,5 +34,18 @@ The path is `A`C`F`G   ?
 Solutions:
 Henry: findParent:{parent:first exec p from t where n=x;$[parent=x;show x;[findParent[parent];show x]]}
 Gokul: g:{reverse {first (1!t)[x]}\[x]}
+William: 
+
+q)pi:t.n?t.p
+q)pi
+0 0 0 0 2 2 5 1 3
+q)pi scan t.n?`G
+6 5 2 0
+q)reverse t.n@pi scan t.n?`G
+`A`C`F`G
+
+Finding all the path for all the node
+q)(reverse t.n@pi scan) each til count t
+
 
 
