@@ -1,0 +1,43 @@
+Now slightly addition to the problem
+If we have weight associated with the tree
+
+A (1)
+|_B (2)
+| |_H (8)
+|
+|_C (3)
+| |_E (5)
+| |_F (6)
+|   |
+|   |_G (7)
+|_ D (4)
+   |_I (9)
+
+q)t:([]n:`A`B`C`D`E`F`G`H`I;p:`A`A`A`A`C`C`F`B`D)
+q)update w:1+til count[t] from `t
+`t
+q)t
+n p w
+-----
+A A 1
+B A 2
+C A 3
+D A 4
+E C 5
+F C 6
+G F 7
+H B 8
+I D 9
+
+Results => where sw is the sum of weight from the child to it’s own node.
+n p w sw
+--------
+A A 1 45
+B A 2 10
+C A 3 21
+D A 4 13
+E C 5 5
+F C 6 13
+G F 7 7
+H B 8 8
+I D 9 9
