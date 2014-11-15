@@ -41,3 +41,13 @@ F C 6 13
 G F 7 7
 H B 8 8
 I D 9 9
+
+Gokul:
+getAllC:{distinct raze ({exec n from t where p in x}\)x}
+update c:getAllC each t.n from `t
+select n,p,w,sw:sum each ((t.n)!t.w)t.c from t
+
+
+
+
+
