@@ -47,6 +47,24 @@ getAllC:{distinct raze ({exec n from t where p in x}\)x}
 update c:getAllC each t.n from `t
 select n,p,w,sw:sum each ((t.n)!t.w)t.c from t
 
+Yifei:
+f:{reverse ({exec first p from t where n=x}\)x}
+
+then we can make use of it to get the answer for question 2:
+update sw:{sum t.w * x in/: f each t.n} each n from t
+
+
+William:
+The idea is once we get the path we can sum it.
+Just use the @ is good enough.
+
+This is to get the parent index.
+pi:t.n?t.p
+
+To get the sum is 
+update sw:@[(count t)#0;(pi scan) each i;+;w] from t
+
+
 
 
 
