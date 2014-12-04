@@ -1,0 +1,21 @@
+You have an integer list of even length as input consisting of only 0's and 1's with 0 at odd places and 1 at even places.
+ 
+We want output to be a list of steps which will convert the above  list to a new list  in which all 0's are placed at the  first half of list and all 1's at second half.
+ 
+Input:    0 1 0 1
+Output : Steps which will convert input list to  0 0 1 1
+For ex:      Move '1 0' at index 1 and 2 to start.
+Or you can just output the no. of steps .
+ 
+Conditions:
+1. You can shift exactly 2 consecutive integers at a time (neither 1 nor >2).
+2. You can place this pair  at one of the 3 places -  at start of list , end of list , slot from where you shifted the pair in previous step.
+ 
+  For ex: At start , there are only 2 blank spaces to put a pair:
+    _ 0 1 0 1 0 1 0 1 _
+Now I am moving 0 1 (in red ) at start.  For the next step, I have 3 places now:
+  _ 0 1 0 1 _ 0 1 _
+
+Each time you shift a pair, it will leave an empty slot.
+ 
+Let's see who can do it in minimum steps.
