@@ -1,0 +1,30 @@
+This puzzle is from Google Code Jam. I am cutting out all story part from it and just  mentioning the final task:
+ 
+Program will have two lists of same length.  Both lists will consist of equal no. of sublists which are  boolean lists  and all of them will be of same length.
+ 
+Target: To find if it is possible to get list2 from list1 by inverting some bits in list1 and if it's possible then output minimum no. of bits need to be inverted othewise output message not possible.
+
+Note: For this puzzle, two lists are equal if they contain same elements/sublists. Order of elements doesn't matter in the list and can be different in both lists.
+Ex:  (1 2 3) = (3 1 2)
+ 
+Rules:
+a) Inversion of  1 is 0 and 0 is 1 .
+b)  Bit can be inverted only by position. That means if we decide to  invert bit at postion 1 , it will invert bits at postion 1 from all sublist of list1.
+   For ex:  list1:  (01b ;11b)
+  If we invert bit at  1(first) position then output will be
+      (11b;01b)
+ 
+Input: It will consist of 4 parameters.
+1. Length of lists.
+2. Length of sublists.
+3.List1
+4.List2
+ 
+Input ex:  3  2   (10b; 01b; 11b)   (11b; 10b; 00b)
+a) Both list1 and list2 are of same length 3.
+b) Each sublist is boolean list.
+c) Sublists are of same length 2.
+ 
+  Output for above ex:  1  (because inverting bit at postion 2 will convert list1 to list2)
+ 
+Lets see how fast can we do this.
