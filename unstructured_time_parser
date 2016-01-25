@@ -1,0 +1,42 @@
+Given an unstructured temporal string such as "1h:20m:23s:288ms", how do you evaluate this to a "second" value?
+
+For the above example, the answer would be sum of 1*60*60 (for the hour), 20*60 (for the minutes), 23 (seconds as it is) and 288/1000 (for the milli second) = 4823.288 seconds.
+
+Note that the input string is really unstructured and might look like any of the below...
+"1h:20m:23s:288ms" or "20m:23s:288ms" or "23s:288ms" or "288ms" or "1h:288ms" or "1h:20m" or "1h" and so on...
+
+
+An ugly-a$$ solution:
+a:"1h:20m:23s:288ms"    /  define your input in variable "a"
+cf: `h`m`s`ms!({3600*x};{60*x};{x};{x%1000})      / define the conversion function to apply on the input after splitting each temporal portion apart
+m:(!). flip {((`$x where `int$x>=97);"I"$(x where `int$x<97))}'[":" vs a]     / splitting the temporal portions apart and assigning to dictionary m
+sum(cf@key m)@'value m    / final solution putting it all together
+
+Either above, or merge them all in a single line (doing it the k way!!)
+sum ((`h`m`s`ms!({3600*x};{60*x};{x};{x%1000}))@key m)@'value m:(!). flip {((`$x where `int$x>=97);"I"$(x where `int$x<97))}'[":" vs a]
+
+/ Now to understand better, breaking  down and reading from right to left,
+
+1) ":" vs a
+- we first tokenize the input based on ":"
+
+2) m:(!). flip {((`$x where `int$x>=97);"I"$(x where `int$x<97))}
+- we pass each token from step 1 to the above function where we pathetically resolve to ascii conversion to identify the string part and numerical part
+- any value below ascii 97 is assumed to be number and anything more than 97 to be the string portion in the input
+- we then form a dictionary of the keys to the value and assign it to m
+so m likes this
+h | 1
+m | 20
+s | 23
+ms| 288
+
+3) `h`m`s`ms!({3600*x};{60*x};{x};{x%1000})
+- The second component in the solution is the dictionary of conversion functions to apply on each of values from the above output
+- multiply the hour portion to 3600, minute portion to 60 and so on..
+
+4) the last part is, identify what portion of the input is hour, and what is minute and what is second etc.. and apply the corresponding function from step 3) on it..
+
+The really desparate portion in the above solution is the conversion of input to ascii values to identify the string and number portion apart. If this can be optimized, the solution can be a lot more elegant.
+
+
+
