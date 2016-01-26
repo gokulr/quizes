@@ -38,5 +38,11 @@ ms| 288
 
 The really desparate portion in the above solution is the conversion of input to ascii values to identify the string and number portion apart. If this can be optimized, the solution can be a lot more elegant.
 
+EDIT:
+Shedding a few more characters.. 
+sum (3600;60;1;.001)*0^`h`m`s`ms#(!). flip {((`$x where `int$x>97);"I"$(x where `int$x<97))}'[":" vs a]
+
+instead of defining functions to apply on each time component, just use something like this, (3600;60;1;.001)*0^`h`m`s`ms#
+this is precisely the beauty of kdb+
 
 
