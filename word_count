@@ -1,0 +1,20 @@
+Kx's first student programming challenge involves a simple word count implementation using kdb.
+http://kxcommunity.com/kx-student-programming-challenge-us-constitution-word-count.php
+
+Rule of the game,
+- read the US constitution http://usconstitution.net/const.txt
+- exclude numbers, punctuations and special characters
+- store the word counts in a dictionary and sort them in decreasing order of word count
+- fastest query wins
+
+the best implementation so far is a 5ms solution:
+/ 5ms
+`:/tmp/txt 0:"|" 0:(key d;value d:desc count each group (`$" " vs a:?[not b in .Q.a;" ";b:lower " " sv read0 `:/tmp/usconst.txt]) except enlist`)
+
+/ 15 ms original solution
+`:/tmp/ans.txt 0: "|" 0:(key d;value d:enlist[""]_ desc count each group raze"\000" vs/:"c"$i*(i:`int$lower read0`:/tmp/usconst.txt) within 97 122)
+
+
+
+
+
