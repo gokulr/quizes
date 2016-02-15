@@ -1,0 +1,26 @@
+Given a random string S and another string T with unique elements, find the minimum consecutive sub-string of S such that it contains all the elements in T. 
+example: 
+S='adobecodebanc' 
+T='abc' 
+answer='banc'
+
+#solution
+
+s:"aabccssddeeufhkaliokbasmr"
+t:"kar"
+f:{x[0]+til x[1]-x[0]-1}; / given 2 numbers, lists down all the possible integers in between them
+
+g:{[s;t] 
+  cs:-1+count s; 		/ count length of input string
+  ct:-1+count t; 		/ count length of target string
+  w:where ct>=t?s;		/ check the index positions on where the target string appears on the input string
+  
+  o:distinct raze cs^{[x;y;cs;ct]{[x;y;i] x,y[i+y?x]}[x;y;]each f[(ct;cs)]}[;w;cs;ct] each w; / based on the index locations of previous step, compute all the possible combinations of indexes where the potential target string could appear
+  
+  ans:{s f x}each o; / compute the all the strings based on the index positions computed in previous steps
+  ans:ans where all each{t in x} each ans; / take only those strings in which contain the target strings
+  ans ct?min ct:count each ans  / take the output with smallest string length and return
+  }
+
+
+
